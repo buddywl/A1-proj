@@ -7,12 +7,17 @@ public class ClimateQueries{
     // and unranged methods for each, but only the unranged
     // are listed below
     public static void main(String[] args){
-        float[] arr1 = {1.0f, 2.0f, 3.0f, 2.0f};
-        float[] arr2 = {1.0f, -9999.0f, 3.0f, 2.0f};
+        boolean[] arr1 = {false, true, false, true};
+        boolean[] arr2 = {false, true, true, false};
 
-        boolean[] indicator = new boolean[arr2.length];
-        for (int i = 0; i < indicator.length; i++){
-            indicator[i] = arr2[i] == -9999.0f;
+        boolean[] indicator = new boolean[arr1.length];
+        for(int i = 0; i < arr1.length; i++){
+            if(arr1[i] && arr2[i]){
+                indicator[i] = true;
+            }
+            else{
+                indicator[i] = false;
+            }
         }
         System.out.println(Arrays.toString(indicator));
 
