@@ -7,19 +7,17 @@ public class ClimateQueries{
     // and unranged methods for each, but only the unranged
     // are listed below
     public static void main(String[] args){
-        boolean[] arr1 = {false, true, false, true};
-        boolean[] arr2 = {false, true, true, false};
-
-        boolean[] indicator = new boolean[arr1.length];
-        for(int i = 0; i < arr1.length; i++){
-            if(arr1[i] && arr2[i]){
-                indicator[i] = true;
-            }
-            else{
-                indicator[i] = false;
-            }
-        }
-        System.out.println(Arrays.toString(indicator));
+        boolean[] ind1 = {false, true, true, false, true};
+        boolean[] ind2 = {false, false, false};
+//        int index = -1;
+//        for(int i = 0; i < ind2.length; i++){
+//            if(ind2[i]){
+//                index = i;
+//            }
+//        }
+//        System.out.println(index);
+        System.out.println(Arrays.toString(find(ind1)));
+        System.out.println(Arrays.toString(find(ind2)));
 
 
     }
@@ -28,8 +26,8 @@ public class ClimateQueries{
         // add your code here 
         // replace code below with your own return statement
         boolean[] indicator = new boolean[arr.length];
-        for (int i = 0; i < indicator.length; i++){
-            indicator[i] = arr[i] == val;
+        for (int i = 0; i < arr.length; i++){
+            indicator[i] = (arr[i] == val);
         }
         return indicator;
     }
@@ -51,12 +49,7 @@ public class ClimateQueries{
         // replace code below with your own return statement
         boolean[] indicator = new boolean[arr1.length];
         for(int i = 0; i < arr1.length; i++){
-            if(arr1[i] && arr2[i]){
-                indicator[i] = true;
-            }
-            else{
-                indicator[i] = false;
-            }
+            indicator[i] = arr1[i] && arr2[i];
         }
         return indicator;
     }
@@ -64,45 +57,105 @@ public class ClimateQueries{
     public static boolean[] isGreaterThan(float[] arr, float val){
         // add your code here
         // replace code below with your own return statement
-        boolean[] indicator = {false};
+        boolean[] indicator = new boolean[arr.length];
+        for(int i = 0; i < arr.length; i++){
+            indicator[i] = (arr[i] > val);
+        }
         return indicator;
     }
 
     public static boolean[] datesBetween(String[] arr, String date1, String date2){
         // add your code here
         // replace code below with your own return statement
-        boolean[] indicator = {false};
+        boolean[] indicator = new boolean[arr.length];
+        int date;
+
+        for(int i = 0; i < arr.length; i++){
+            date = Integer.parseInt(arr[i]);
+            if (date > Integer.parseInt(date1) && date < Integer.parseInt(date2)){
+                indicator[i] = true;
+            }
+        }
         return indicator;
     }
 
     public static float mean(float[] arr, boolean[] indicator, int lo, int hi){
         // add your code here
         // replace code below with your own return statement
-        return 0f;
+        float sum = 0;
+        int range = hi-lo;
+        for(int i = lo; i < hi; i++){
+            if (indicator[i]){
+                sum += arr[i];
+            }
+            else if (!indicator[i]){
+                sum += 0;
+                range = range-1;
+            }
+        }
+        if (lo != hi){
+            return sum/(range);
+        }
+        else{
+            return 0f;
+        }
     }
 
     public static float mean(float[] arr, boolean[] indicator){
-        // add your code here
-        // replace code below with your own return statement
-        return 0f;
+        float sum = 0;
+        int range = arr.length;
+        for(int i = 0; i < arr.length; i++){
+            if (indicator[i]){
+                sum += arr[i];
+            }
+            else if (!indicator[i]){
+                sum += 0;
+                range = range-1;
+            }
+        }
+        if (arr.length != 0){
+            return sum/(range);
+        }
+        else{
+            return 0f;
+        }
     }
 
     public static int count(boolean[] arr){
         // add your code here
         // replace code below with your own return statement
-        return 0;
+        int count = 0;
+        for(boolean x : arr){
+            if (x){
+                count++;
+            }
+        }
+        return count;
     }
 
     public static int findFirst(boolean[] arr){
         // add your code here
         // replace code below with your own return statement
-        return -1;
+        int index = -1;
+        for(int i = 0; i < arr.length; i++){
+            if(arr[i]){
+                index = i;
+            }
+        }
+        return index;
     }
 
     public static int[] find(boolean[] arr){
         // add your code here
         // replace code below with your own return statement
-        int[] indices = {-1};
+        int[] indices = new int[count(arr)];
+        int index = 0;
+        for(int i = 0; i < arr.length; i++){
+            if (arr[i]){
+                indices[index] = i;
+                index++;
+            }
+        }
         return indices;
     }
 }

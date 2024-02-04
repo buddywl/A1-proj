@@ -5,7 +5,8 @@ import java.util.Scanner;
 public class ReadFile {
   /** The main method reads from a file and prints the contents. */
   public static void main(String[] args) {
-    String filename = "C:/Users/buddy/Downloads/A1-proj/A1-proj/data/YUMA_2023.txt";
+    //String filename = "C:/Users/buddy/Downloads/A1-proj/A1-proj/data/YUMA_2023.txt";
+    String filename = "C:/Users/buddy/Documents/GitHub/A1-proj/A1-proj/data/YUMA_2023.txt";
             //(args.length > 0) ? args[0] : "YUMA_2023.txt";
     Scanner file = null;
     try {

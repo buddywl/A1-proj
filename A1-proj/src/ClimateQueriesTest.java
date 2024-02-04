@@ -8,10 +8,10 @@ public class ClimateQueriesTest {
 
     @Test public void testIsEqualTo(){
         boolean[] eq1 = ClimateQueries.isEqualTo(arr1, 2f);
-        assertTrue("isEqualTo: [1,2,3,2], 2 --> [false, true, false, true]", eq1.length==4&&!eq1[0]&&eq1[1]&&!eq1[2]&&eq1[3]);
+        assertTrue("isEqualTo: [1,2,3,2], 2 --> [false, true, false, true]", (eq1.length==4)&&!eq1[0]&&eq1[1]&&!eq1[2]&&eq1[3]);
         
         boolean[] eq3 = ClimateQueries.isEqualTo(arr2, -9999.0f);
-        assertTrue("isEqualTo: [1, -9999, 3, 2], -9999 -> [false, true, false, false]",(eq3.length==4)&&!eq1[0]&&eq1[1]&&!eq1[2]&&!eq1[3]);
+        assertTrue("isEqualTo: [1, -9999, 3, 2], -9999 -> [false, true, false, false]",(eq3.length==4)&&!eq3[0]&&eq3[1]&&!eq3[2]&&!eq3[3]);
     }
     
     @Test public void testLogicalNot() {
@@ -24,13 +24,13 @@ public class ClimateQueriesTest {
         boolean[] ind1 = {false, true, false, true};
         boolean[] ind2 = {false, true, true, false};
         boolean[] and1 = ClimateQueries.logicalAnd(ind1, ind2);
-        assertTrue("[false, true, true, false], [false, true, false, true] -> [false, true, false, false]",(and1.length==4)&&and1[0]&&!and1[1]&&and1[2]&&and1[3]);
+        assertTrue("[false, true, true, false], [false, true, false, true] -> [false, true, false, false]",(and1.length==4)&&!and1[0]&&and1[1]&&!and1[2]&&!and1[3]);
 
     }
 
     @Test public void testIsGreaterThan(){
         boolean[] eq1 = ClimateQueries.isGreaterThan(arr3, 2.5f);
-        assertTrue("isGreaterThan: [1,2,3,2.5], 2.5 --> [false, true, false, true]", eq1.length==4&&!eq1[0]&&eq1[1]&&!eq1[2]&&!eq1[3]);      
+        assertTrue("isGreaterThan: [1,2,3,2.5], 2.5 --> [false, false, true, false]", eq1.length==4&&!eq1[0]&&!eq1[1]&&eq1[2]&&!eq1[3]);
     }
 
     @Test public void testDatesBetween(){

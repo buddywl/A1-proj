@@ -1,7 +1,7 @@
 public class ArrayMethods {
     public static float wholeSum(float[] arr){
         float sum = 0;
-        for(float v : arr) {
+        for(float v : arr){
             sum += v;
         }
         return sum;
@@ -58,8 +58,8 @@ public class ArrayMethods {
         float minVal = 10000;
 
         if(arr.length != 0){
-            for (float v : arr) {
-                if (minVal > v) {
+            for (float v : arr){
+                if (minVal > v){
                     minVal = v;
                 }
             }
@@ -92,8 +92,8 @@ public class ArrayMethods {
         float maxVal = -10000;
 
         if(arr.length != 0){
-            for (float v : arr) {
-                if (maxVal < v) {
+            for (float v : arr){
+                if (maxVal < v){
                     maxVal = v;
                 }
             }
