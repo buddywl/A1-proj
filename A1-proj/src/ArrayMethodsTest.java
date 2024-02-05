@@ -12,6 +12,8 @@ public class ArrayMethodsTest {
     float[] arr2 = {-7.5f, 3.2f};
     float[] arr3 = {};
     float[] arr4 = {1.0f, 3.0f, 2.0f};
+    float[] arr5 = {0.0f, 5.0f, -4.0f, Float.NaN, 1.5f};
+    float[] arr6 = {2.25f, 6.02f, -1.23f, 7.789f};
 
     @Test public void testWholeSum() {
         /* Tests for the wholeSum method*/
@@ -24,6 +26,8 @@ public class ArrayMethodsTest {
         assertEquals(-4.3f, ArrayMethods.wholeSum(arr2), 0.000001);
         assertEquals(0.0f, ArrayMethods.wholeSum(arr3), 0.000001);
         // Write TWO additional tests
+//        assertEquals(0.0f, ArrayMethods.wholeSum(arr5), 0.000001);
+        assertEquals(14.829f, ArrayMethods.wholeSum(arr6), 0.000001);
     }
     
     @Test public void testSum(){

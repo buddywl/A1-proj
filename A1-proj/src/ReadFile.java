@@ -5,16 +5,14 @@ import java.util.Scanner;
 /** Class containing a file reading demo */
 public class ReadFile {
   /** The main method reads from a file and prints the contents. */
-  public static String filename = "C:/Users/buddy/Documents/GitHub/A1-proj/A1-proj/data/YUMA_2023.txt";
   public static void main(String[] args) {
-
   }
 
-  public static String getFilename(){
+  public String getFilename(String filename){
     return filename;
   }
 
-  public static String[] getStringData(int fieldNum){
+  public String[] getStringData(int fieldNum, String filename){
     Scanner file = null;
 
     try {
@@ -41,7 +39,7 @@ public class ReadFile {
     return array;
   }
 
-  public static float[] getFloatData(int fieldNum){
+  public float[] getFloatData(int fieldNum, String filename){
     Scanner file = null;
 
     int count = 0;
@@ -69,4 +67,6 @@ public class ReadFile {
     file.close();
     return array;
   }
+
+
 }
