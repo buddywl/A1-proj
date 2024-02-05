@@ -43,6 +43,7 @@ public class ClimateQueriesTest {
         boolean[] ind1 = {true, false, true, true};
         assertEquals(2.5f, ClimateQueries.mean(arr2, ind1, 1, 4), 0.000001);
         assertEquals(2f, ClimateQueries.mean(arr2, ind1), 0.000001);
+//        assertEquals(2.0f, ClimateQueries.mean(arr1, ind1), 0.000001);
     }
 
     @Test public void testCount(){
@@ -52,17 +53,17 @@ public class ClimateQueriesTest {
 
     @Test public void testFindFirst(){
         boolean[] ind1 = {false, false, true, false, true};
-        assertEquals(2, ClimateQueries.count(ind1), 0.000001);
+        assertEquals(2, ClimateQueries.findFirst(ind1), 0.000001);
 
         boolean[] ind2 = {false, false, false};
-        assertEquals(-1, ClimateQueries.count(ind2), 0.000001);
+        assertEquals(-1, ClimateQueries.findFirst(ind2), 0.000001);
     }
 
     @Test public void testFind(){
 
         boolean[] ind1 = {false, true, true, false, true};
         int[] f1 = ClimateQueries.find(ind1);
-        assertTrue("[false, true, true, false, true] -> [1,2,4]",f1.length==2&&f1[0]==1&&f1[1]==2&&f1[2]==4);
+        assertTrue("[false, true, true, false, true] -> [1,2,4]",f1.length==3&&f1[0]==1&&f1[1]==2&&f1[2]==4);
     
         boolean[] ind2 = {false, false, false};
         int[] f2 = ClimateQueries.find(ind2);
