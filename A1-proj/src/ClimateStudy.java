@@ -1,8 +1,6 @@
 import java.io.*;
 public class ClimateStudy {
     public static void main(String[] args){
-        ReadFile file = new ReadFile();
-
         File twentyThree_Path = new File((args.length > 0) ? args[0] : "A1-proj/Data/Dinosaur/Dinosaur_2023.txt");
         File twentyTwo_Path = new File((args.length > 0) ? args[0] : "A1-proj/Data/Dinosaur/Dinosaur_2022.txt");
         File twentyOne_Path = new File((args.length > 0) ? args[0] : "A1-proj/Data/Dinosaur/Dinosaur_2021.txt");
@@ -25,96 +23,93 @@ public class ClimateStudy {
         String fifteen = fifteen_Path.getAbsolutePath();
         String fourteen = fourteen_Path.getAbsolutePath();
 
-        printData(twentyThree);
-        printData(twentyTwo);
-        printData(twentyOne);
-        printData(twenty);
-        printData(nineteen);
-        printData(eighteen);
-        printData(seventeen);
-        printData(sixteen);
-        printData(fifteen);
-        printData(fourteen);
+        System.out.println("------------------------------------------------------------");
+        System.out.println("* Printing Climate Data for Dinosaur, CO from 2014 to 2023 *");
+        System.out.println("------------------------------------------------------------");
+
+        printData(fourteen, twentyThree);
+        printData(fourteen, twentyTwo);
+        printData(fourteen, twentyOne);
+        printData(fourteen, twenty);
+        printData(fourteen, nineteen);
+        printData(fourteen, eighteen);
+        printData(fourteen, seventeen);
+        printData(fourteen, sixteen);
+        printData(fourteen, fifteen);
+        printData(fourteen, fourteen);
+
+        System.out.println("------------------------------------------------------------");
+
+        float[] annualMeans = {annualMean(fourteen), annualMean(fifteen), annualMean(sixteen), annualMean(seventeen), annualMean(eighteen), annualMean(nineteen), annualMean(twenty), annualMean(twentyOne), annualMean(twentyTwo), annualMean(twentyThree)};
+        float mean1 = ArrayMethods.mean(annualMeans, 0, 5);
+        float mean2 = ArrayMethods.mean(annualMeans,  5, 10);
+
+        System.out.println("** DATA ANALYSIS **");
+        System.out.println("The annual mean temperature for the years 2014 - 2018 was " + mean1 + " degrees Celsius");
+        System.out.println("and the annual mean temperature for the years 2019 - 2023 was " + mean2 + " degrees Celsius");
+        System.out.println("\n* Though we would expect the temperature to increase in more recent years based on current \nclimate trends, the opposite is true for the past 10 years in Dinosaur, CO. This is \nevident when considering that the average temperature during the first five years of the \ntime frame was greater than the second five years of the time frame.");
+        System.out.println("\n* Furthermore, when examining the yearly data provided above, there does not seem to be a \nclear trend in temperature. There is no obvious relationship between the year and the first \noccurrence of a temperature greater than the annual mean in 2014, and the number of days \nin which the maximum temperature exceeds 30 degrees is variable across the ten years, This \nmay be due to lack of crucial data points, which indicates that a deeper statistical \nanalysis is necessary.");
     }
 
     public static float annualMean(String filename){
-        ReadFile file = new ReadFile();
-        ClimateQueries cq = new ClimateQueries();
-        float[] data = file.getFloatData(7, filename);
-
-        return cq.mean(data, cq.logicalNot(cq.isEqualTo(data, -9999.0f)));
+        float[] data = ReadFile.getFloatData(8, filename);
+        return ClimateQueries.mean(data, ClimateQueries.logicalNot(ClimateQueries.isEqualTo(data, -9999.0f)));
 
     }
 
     public static int overThirty(String filename){
-        ReadFile file = new ReadFile();
-        ClimateQueries cq = new ClimateQueries();
-        float[] data = file.getFloatData(5, filename);
+        float[] data = ReadFile.getFloatData(5, filename);
 
-        return cq.count(cq.isGreaterThan(data, 30));
+        return ClimateQueries.count(ClimateQueries.isGreaterThan(data, 30));
     }
 
     public static int getYear(String filename){
-        ReadFile file = new ReadFile();
-        String[] data = file.getStringData(1, filename);
+        String[] data = ReadFile.getStringData(1, filename);
 
         String yearString = data[0].substring(0,4);
         return Integer.parseInt(yearString);
     }
 
 
-    public static String getFirst(String filename){
-        ReadFile file = new ReadFile();
-        ClimateQueries cq = new ClimateQueries();
-
-        float[] tempData = file.getFloatData(7, filename);
-        String[] dates = file.getStringData(1, filename);
-        int index = cq.findFirst(cq.isGreaterThan(tempData, annualMean(filename)));
+    public static String getFirst(String firstYear, String filename){
+        float[] tempData = ReadFile.getFloatData(7, filename);
+        String[] dates = ReadFile.getStringData(1, filename);
+        int index = ClimateQueries.findFirst(ClimateQueries.isGreaterThan(tempData, annualMean(firstYear)));
 
         String month = dates[index].substring(4,6);
         String day = dates[index].substring(6,8);
         String year = dates[index].substring(0,4);
 
-        if(month.equals("01")){
-            month = "January";
-        } else if (month.equals("02")){
-            month = "February";
-        } else if (month.equals("03")){
-            month = "March";
-        } else if (month.equals("04")){
-            month = "April";
-        } else if (month.equals("05")){
-            month = "May";
-        } else if (month.equals("06")){
-            month = "June";
-        } else if (month.equals("07")){
-            month = "July";
-        } else if (month.equals("08")){
-            month = "August";
-        } else if (month.equals("09")){
-            month = "September";
-        } else if (month.equals("10")){
-            month = "October";
-        } else if (month.equals("11")){
-            month = "November";
-        } else if (month.equals("12")){
-            month = "December";
-        }
+        month = switch (month) {
+            case "01" -> "January";
+            case "02" -> "February";
+            case "03" -> "March";
+            case "04" -> "April";
+            case "05" -> "May";
+            case "06" -> "June";
+            case "07" -> "July";
+            case "08" -> "August";
+            case "09" -> "September";
+            case "10" -> "October";
+            case "11" -> "November";
+            case "12" -> "December";
+            default -> month;
+        };
 
         return month + " " + day + " " + year;
     }
 
-    public static void printData(String filename){
+    public static void printData(String firstYear, String filename){
         int year = getYear(filename);
         float annualMean = annualMean(filename);
-        String firstOccurrence = getFirst(filename);
+        String firstOccurrence = getFirst(firstYear, filename);
         int numThirty = overThirty(filename);
 
-        System.out.println(year + "\n-------");
-        System.out.println("The annual mean for " + year + " was:   " + annualMean + " degrees Celsius");
-        System.out.println("The first temperature greater than the annual mean occurred on:   " + firstOccurrence);
-        System.out.println("Number of days greater than 30 degrees:   " + numThirty + " days");
-        System.out.println("\n\n");
+        System.out.println(year + " ----");
+        System.out.println("| *  The annual mean temperature in " + year + " was: " + annualMean + " degrees Celsius");
+        System.out.println("| *  The first temperature greater than the annual mean occurred on: " + firstOccurrence);
+        System.out.println("| *  Number of days greater than 30 degrees: " + numThirty + " days");
+        System.out.print("\n");
     }
 
 

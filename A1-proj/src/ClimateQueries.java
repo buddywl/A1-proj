@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.io.*;
 
 public class ClimateQueries{
@@ -8,18 +7,16 @@ public class ClimateQueries{
     // and unranged methods for each, but only the unranged
     // are listed below
     public static void main(String[] args){
-        ReadFile file = new ReadFile();
         File filepath = new File((args.length > 0) ? args[0] : "A1-proj/data/YUMA_2023.txt");
         String filename = filepath.getAbsolutePath();
 
 
-        String[] dates = file.getStringData(1, filename);
-        float[] temps = file.getFloatData(7, filename);
-        float[] minTemps = file.getFloatData(6, filename);
-        float[] maxTemps = file.getFloatData(5, filename);
+        String[] dates = ReadFile.getStringData(1, filename);
+        float[] temps = ReadFile.getFloatData(8, filename);
+        float[] minTemps = ReadFile.getFloatData(6, filename);
+        float[] maxTemps = ReadFile.getFloatData(5, filename);
 
-        System.out.println("Source File: " + file.getFilename(filename));
-//        System.out.println(filename);
+        System.out.println("Source File: " + ReadFile.getFilename(filename));
 
         System.out.print("Annual Mean Temperature: ");
         System.out.print(mean(temps, logicalNot(isEqualTo(temps, -9999.0f))));
@@ -45,16 +42,17 @@ public class ClimateQueries{
 
     /**
      * Returns an array of booleans dependent on if the index of the initial array is equal to a given value on a range in the array
-     * @param   arr the array of floats to be accessed
-     * @param   lo  the lower bound of the array (inclusive)
-     * @param   hi  the upper bound of the array (exclusive)
-     * @param   val the target value
-     * @return  the final list of booleans
+     * @param   arr: the array of floats to be accessed
+     * @param   lo:  the lower bound of the array (inclusive)
+     * @param   hi:  the upper bound of the array (exclusive)
+     * @param   val: the target value
+     * @return  indicator: the final list of booleans
      */
     public static boolean[] isEqualTo(float[] arr, float val, int lo, int hi){
         // add your code here
         // replace code below with your own return statement
-        boolean[] indicator = new boolean[arr.length];
+        int range = hi - lo;
+        boolean[] indicator = new boolean[range];
         for (int i = lo; i < hi; i++){
             indicator[i] = (arr[i] == val);
         }
@@ -62,9 +60,9 @@ public class ClimateQueries{
     }
     /**
      * Returns an array of booleans dependent on if the index of the initial array is equal to a given value
-     * @param   arr the array of floats to be accessed
-     * @param   val the target value
-     * @return  the array of booleans
+     * @param   arr: the array of floats to be accessed
+     * @param   val: the target value
+     * @return  indicator: the array of booleans
      */
     public static boolean[] isEqualTo(float[] arr, float val){
         // add your code here 
@@ -78,10 +76,10 @@ public class ClimateQueries{
 
     /**
      * Returns an array of booleans that inverts the value of an initial array of booleans on a given range
-     * @param   arr the array of booleans to be accessed
-     * @param   lo  the lower bound of the array (inclusive)
-     * @param   hi  the upper bound of the array (exclusive)
-     * @return  the inverted array of booleans
+     * @param   arr: the array of booleans to be accessed
+     * @param   lo:  the lower bound of the array (inclusive)
+     * @param   hi:  the upper bound of the array (exclusive)
+     * @return  indicator: the inverted array of booleans
      */
     public static boolean[] logicalNot(boolean[] arr, int lo, int hi){
         // add your code here
@@ -98,8 +96,8 @@ public class ClimateQueries{
     /**
      * Returns an array of booleans that inverts the value of an initial array of booleans
      *      That is, [true, false, false] --> [false, true, true].
-     * @param   arr the array of booleans to be accessed
-     * @return  the inverted array of booleans
+     * @param   arr: the array of booleans to be accessed
+     * @return  indicator: the inverted array of booleans
      */
     public static boolean[] logicalNot(boolean[] arr){
         // add your code here
@@ -115,12 +113,12 @@ public class ClimateQueries{
 
     /**
      * Returns an array of booleans that compares the values of two initial arrays of booleans
-     *      That is, the value of the indicator array is only true if both initial values at the same index is true.
-     * @param   arr1 the array of booleans to be accessed
-     * @param   arr2 the second array of booleans to be accessed
-     * @param   lo  the lower bound of the array (inclusive)
-     * @param   hi  the upper bound of the array (exclusive)
-     * @return  the comparison array of booleans
+     *      That is, the value of the indicator array is only true if both values of the initial arrays are true at the same index.
+     * @param   arr1: the array of booleans to be accessed
+     * @param   arr2: the second array of booleans to be accessed
+     * @param   lo:  the lower bound of the array (inclusive)
+     * @param   hi:  the upper bound of the array (exclusive)
+     * @return  indicator: the comparison array of booleans
      */
     public static boolean[] logicalAnd(boolean[] arr1, boolean[] arr2, int lo, int hi){
         // add your code here
@@ -222,6 +220,7 @@ public class ClimateQueries{
             return 0f;
         }
     }
+
 
 
     public static int count(boolean[] arr, int lo, int hi){
