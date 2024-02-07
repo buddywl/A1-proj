@@ -1,7 +1,7 @@
 **Programming Partner Name:**
 
 **Other Collaborators (and kudos):**
-    Dani
+* Dani
     
 
 **References Used:**
@@ -13,4 +13,6 @@
 
 
 **Reflection on Your experience with this assignment:**
-    
+* I had an overall good experience with this project and found it useful for getting back into the groove of using java
+* It was slightly difficult to ignore methods at which coding this project would be easier (using ArrayLists) but I thought it was a good exercise to restrict myself to certain data structures in order to understand the capabilities of arrays more
+* I also thought it was interesting to follow specific document guidelines because I have never stressed the importance of commenting code, especially since a lot of my coding experience comes from just learning on my personal time

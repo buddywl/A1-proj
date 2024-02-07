@@ -6,6 +6,10 @@ public class ClimateQueries{
     // climate analysis. You should include both ranged
     // and unranged methods for each, but only the unranged
     // are listed below
+    /**
+     * Prints out climate data for the given file and demonstrates the use of methods written in the class
+     * @param args The command line arguments (ignored)
+     **/
     public static void main(String[] args){
         File filepath = new File((args.length > 0) ? args[0] : "A1-proj/data/YUMA_2023.txt");
         String filename = filepath.getAbsolutePath();
@@ -244,16 +248,14 @@ public class ClimateQueries{
         for(int i = lo; i < hi; i++){
             if (indicator[i]){
                 sum += arr[i];
-            }
-            else {
+            } else {
                 sum += 0;
                 range = range-1;
             }
         }
         if (lo != hi){
             return sum/(range);
-        }
-        else{
+        } else{
             return 0f;
         }
     }
@@ -269,16 +271,14 @@ public class ClimateQueries{
         for(int i = 0; i < arr.length; i++){
             if (indicator[i]){
                 sum += arr[i];
-            }
-            else {
+            } else {
                 sum += 0;
                 range = range-1;
             }
         }
         if (arr.length != 0){
             return sum/(range);
-        }
-        else{
+        } else{
             return 0f;
         }
     }

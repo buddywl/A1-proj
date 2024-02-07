@@ -37,8 +37,7 @@ public class ArrayMethods {
     public static float mean(float[] arr, int lo, int hi){
         if (lo != hi){
             return sum(arr, lo, hi)/(hi-lo);
-        }
-        else{
+        } else{
             return 0;
         }
 
@@ -51,8 +50,7 @@ public class ArrayMethods {
     public static float mean(float[] arr){
         if (arr.length != 0){
             return wholeSum(arr)/arr.length;
-        }
-        else{
+        } else{
             return 0;
         }
 
@@ -77,8 +75,7 @@ public class ArrayMethods {
 
             }
             return minVal;
-        }
-        else{
+        } else{
             return Float.NaN;
         }
 
@@ -98,8 +95,7 @@ public class ArrayMethods {
                 }
             }
             return minVal;
-        }
-        else{
+        } else{
             return Float.NaN;
         }
 
@@ -124,8 +120,7 @@ public class ArrayMethods {
 
             }
             return maxVal;
-        }
-        else{
+        } else{
             return Float.NaN;
         }    }
     /**
@@ -143,8 +138,7 @@ public class ArrayMethods {
                 }
             }
             return maxVal;
-        }
-        else{
+        } else{
             return Float.NaN;
         }
     }

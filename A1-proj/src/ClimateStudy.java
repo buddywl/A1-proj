@@ -1,5 +1,9 @@
 import java.io.*;
 public class ClimateStudy {
+    /**
+     * Prints out climate data for the given file and demonstrates the use of methods written in the class
+     * @param args The command line arguments (ignored)
+     **/
     public static void main(String[] args){
         File twentyThree_Path = new File((args.length > 0) ? args[0] : "A1-proj/Data/Dinosaur/Dinosaur_2023.txt");
         File twentyTwo_Path = new File((args.length > 0) ? args[0] : "A1-proj/Data/Dinosaur/Dinosaur_2022.txt");
@@ -51,18 +55,33 @@ public class ClimateStudy {
         System.out.println("\n* Furthermore, when examining the yearly data provided above, there does not seem to be a \nclear trend in temperature. There is no obvious relationship between the year and the first \noccurrence of a temperature greater than the annual mean in 2014, and the number of days \nin which the maximum temperature exceeds 30 degrees is variable across the ten years, This \nmay be due to lack of crucial data points, which indicates that a deeper statistical \nanalysis is necessary.");
     }
 
+    /**
+     Parses and array of floats which is extracted from a data file and returns out the mean of that data.
+     * @param filename path to the data file
+     * @return a float containing the annual mean of that year
+     **/
     public static float annualMean(String filename){
         float[] data = ReadFile.getFloatData(8, filename);
         return ClimateQueries.mean(data, ClimateQueries.logicalNot(ClimateQueries.isEqualTo(data, -9999.0f)));
 
     }
 
+    /**
+     * Parses an array of floats which is extracted from a data file and returns out the number of values greater than 30.
+     * @param filename path to the data file
+     * @return an int number of values greater than 30
+     **/
     public static int overThirty(String filename){
         float[] data = ReadFile.getFloatData(5, filename);
 
         return ClimateQueries.count(ClimateQueries.isGreaterThan(data, 30));
     }
 
+    /**
+     * returns the year of interest in which data from a file was taken
+     * @param filename path to the data file
+     * @return an int containing the year that the data was taken
+     **/
     public static int getYear(String filename){
         String[] data = ReadFile.getStringData(1, filename);
 
@@ -70,7 +89,12 @@ public class ClimateStudy {
         return Integer.parseInt(yearString);
     }
 
-
+    /**
+     * Reads an array of string containing the dates of data points and an array of floats containing the maximum temperatures
+     * @param filename path to the data file
+     * @param firstYear the path to the first year of data taken
+     * @return a string containing the first day in which the temperature exceeded the annual mean temperature for the first year
+     **/
     public static String getFirst(String firstYear, String filename){
         float[] tempData = ReadFile.getFloatData(7, filename);
         String[] dates = ReadFile.getStringData(1, filename);
@@ -98,7 +122,10 @@ public class ClimateStudy {
 
         return month + " " + day + " " + year;
     }
-
+    /**
+     * Prints out climate data for the given file
+     * @param filename path to the data file
+     **/
     public static void printData(String firstYear, String filename){
         int year = getYear(filename);
         float annualMean = annualMean(filename);
