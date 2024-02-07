@@ -8,10 +8,21 @@ public class ReadFile {
     System.out.println(getFilename("data/YUMA_2023.txt"));
   }
 
+  /**
+   * Reads a file and returns the name of the file being read
+   * @param   filename: the filepath
+   * @return  returns the name of the file being read
+   */
   public static String getFilename(String filename){
     return filename.substring(filename.indexOf("data")+5);
   }
 
+  /**
+   * Reads a file and returns an array of strings containing each element in a given field
+   * @param   fieldNum: the field to be read
+   * @param   filename: the filepath
+   * @return  array: the array of Strings containing data from the file
+   */
   public static String[] getStringData(int fieldNum, String filename){
     Scanner file = null;
     Scanner newFile = null;
@@ -52,6 +63,12 @@ public class ReadFile {
     return array;
   }
 
+  /**
+   * Reads a file and returns an array of floats containing each element in a given field
+   * @param   fieldNum: the field to be read
+   * @param   filename: the filepath
+   * @return  array: the array of floats containing data from the file
+   */
   public static float[] getFloatData(int fieldNum, String filename){
     Scanner file = null;
     Scanner newFile = null;

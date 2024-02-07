@@ -112,7 +112,7 @@ public class ClimateQueries{
     }
 
     /**
-     * Returns an array of booleans that compares the values of two initial arrays of booleans
+     * Returns an array of booleans that compares the values of two initial arrays of booleans on a given range
      *      That is, the value of the indicator array is only true if both values of the initial arrays are true at the same index.
      * @param   arr1: the array of booleans to be accessed
      * @param   arr2: the second array of booleans to be accessed
@@ -130,6 +130,13 @@ public class ClimateQueries{
         }
         return indicator;
     }
+    /**
+     * Returns an array of booleans that compares the values of two initial arrays of booleans
+     *      That is, the value of the indicator array is only true if both values of the initial arrays are true at the same index.
+     * @param   arr1: the array of booleans to be accessed
+     * @param   arr2: the second array of booleans to be accessed
+     * @return  indicator: the comparison array of booleans
+     */
     public static boolean[] logicalAnd(boolean[] arr1, boolean[] arr2){
         // add your code here
         // replace code below with your own return statement
@@ -140,7 +147,14 @@ public class ClimateQueries{
         return indicator;
     }
 
-
+    /**
+     * Returns an array of booleans that represents if a value is greater than the given value (on a range in the array)
+     * @param   arr: the array of floats to be accessed
+     * @param   val: the target value
+     * @param   lo:  the lower bound of the array (inclusive)
+     * @param   hi:  the upper bound of the array (exclusive)
+     * @return  indicator: the array of booleans containing whether a value is greater or not
+     */
     public static boolean[] isGreaterThan(float[] arr, float val, int lo, int hi){
         // add your code here
         // replace code below with your own return statement
@@ -151,6 +165,12 @@ public class ClimateQueries{
         }
         return indicator;
     }
+    /**
+     * Returns an array of booleans that represents if a value is greater than the given value
+     * @param   arr: the array of floats to be accessed
+     * @param   val: the target value
+     * @return  indicator: the array of booleans containing whether a value is greater or not
+     */
     public static boolean[] isGreaterThan(float[] arr, float val){
         // add your code here
         // replace code below with your own return statement
@@ -161,7 +181,37 @@ public class ClimateQueries{
         return indicator;
     }
 
+    /**
+     * Returns an array of booleans that represents if a value is between two given dates (on a range in the array)
+     * @param   arr: the array of strings to be accessed
+     * @param   date1: the first date in the time range
+     * @param   date2: the second date in the time range
+     * @param   lo:  the lower bound of the array (inclusive)
+     * @param   hi:  the upper bound of the array (exclusive)
+     * @return  indicator: the array of booleans containing whether a value is within the time frame
+     */
+    public static boolean[] datesBetween(String[] arr, String date1, String date2, int hi, int lo){
+        // add your code here
+        // replace code below with your own return statement
+        int range = hi-lo;
+        boolean[] indicator = new boolean[range];
+        int date;
 
+        for(int i = lo; i < hi; i++){
+            date = Integer.parseInt(arr[i]);
+            if (date > Integer.parseInt(date1) && date < Integer.parseInt(date2)){
+                indicator[i] = true;
+            }
+        }
+        return indicator;
+    }
+    /**
+     * Returns an array of booleans that represents if a value is between two given dates
+     * @param   arr: the array of strings to be accessed
+     * @param   date1: the first date in the time range
+     * @param   date2: the second date in the time range
+     * @return  indicator: the array of booleans containing whether a value is within the time frame
+     */
     public static boolean[] datesBetween(String[] arr, String date1, String date2){
         // add your code here
         // replace code below with your own return statement
@@ -177,7 +227,14 @@ public class ClimateQueries{
         return indicator;
     }
 
-
+    /**
+     * Returns the mean of the values in a given array with the condition that the value of an indicator array is true (on a range in the array)
+     * @param   arr: the array of floats to be accessed
+     * @param   indicator: the array of booleans to compare to
+     * @param   lo:  the lower bound of the array (inclusive)
+     * @param   hi:  the upper bound of the array (exclusive)
+     * @return  the mean of the values in the array
+     */
     public static float mean(float[] arr, boolean[] indicator, int lo, int hi){
         // add your code here
         // replace code below with your own return statement
@@ -200,7 +257,12 @@ public class ClimateQueries{
             return 0f;
         }
     }
-
+    /**
+     * Returns the mean of the values in a given array with the condition that the value of an indicator array is true
+     * @param   arr: the array of floats to be accessed
+     * @param   indicator: the array of booleans to compare to
+     * @return  the mean of the values in the array
+     */
     public static float mean(float[] arr, boolean[] indicator){
         float sum = 0;
         int range = arr.length;
@@ -222,7 +284,13 @@ public class ClimateQueries{
     }
 
 
-
+    /**
+     * Returns the number of times a true value appears in an array of booleans (on a range in the array)
+     * @param   arr: the array of booleans to be accessed
+     * @param   lo:  the lower bound of the array (inclusive)
+     * @param   hi:  the upper bound of the array (exclusive)
+     * @return  count: the number of true values in an array of booleans
+     */
     public static int count(boolean[] arr, int lo, int hi){
         // add your code here
         // replace code below with your own return statement
@@ -234,6 +302,11 @@ public class ClimateQueries{
         }
         return count;
     }
+    /**
+     * Returns the number of times a true value appears in an array of booleans
+     * @param   arr: the array of booleans to be accessed
+     * @return  count: the number of true values in an array of booleans
+     */
     public static int count(boolean[] arr){
         // add your code here
         // replace code below with your own return statement
@@ -246,7 +319,13 @@ public class ClimateQueries{
         return count;
     }
 
-
+    /**
+     * Returns the first occurrence of a true value in an array of booleans (on a range in the array)
+     * @param   arr: the array of booleans to be accessed
+     * @param   lo:  the lower bound of the array (inclusive)
+     * @param   hi:  the upper bound of the array (exclusive)
+     * @return  index: the index of the first occurrence of a true value
+     */
     public static int findFirst(boolean[] arr, int lo, int hi){
         // add your code here
         // replace code below with your own return statement
@@ -259,6 +338,11 @@ public class ClimateQueries{
         }
         return index;
     }
+    /**
+     * Returns the first occurrence of a true value in an array of booleans
+     * @param   arr: the array of booleans to be accessed
+     * @return  index: the index of the first occurrence of a true value
+     */
     public static int findFirst(boolean[] arr){
         // add your code here
         // replace code below with your own return statement
@@ -272,7 +356,13 @@ public class ClimateQueries{
         return index;
     }
 
-
+    /**
+     * Returns an array of the index of each true value in an array of booleans (on a range in the array)
+     * @param   arr: the array of booleans to be accessed
+     * @param   lo:  the lower bound of the array (inclusive)
+     * @param   hi:  the upper bound of the array (exclusive)
+     * @return  the array of indexes
+     */
     public static int[] find(boolean[] arr, int lo, int hi){
         // add your code here
         // replace code below with your own return statement
@@ -286,6 +376,11 @@ public class ClimateQueries{
         }
         return indices;
     }
+    /**
+     * Returns an array of the index of each true value in an array of booleans (on a range in the array)
+     * @param   arr: the array of booleans to be accessed
+     * @return  the array of indexes
+     */
     public static int[] find(boolean[] arr){
         // add your code here
         // replace code below with your own return statement
